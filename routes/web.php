@@ -11,26 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/index', function () {
-    return view('index');
-});
+Route::get('/', 'IndexController@index');
 
-Route::get('/balance', function () {
-    return view('balance');
-});
+Route::get('/index', 'IndexController@index');
 
-Route::get('/inversiones', function () {
-    return view('inversiones');
-});
+Route::get('/balance', 'BalanceController@index');
 
-Route::get('/pago-servicios', function () {
-    return view('pago-servicios');
-});
+Route::get('/inversiones', 'InversionesController@index');
 
-Route::get('/pago', function () {
-    return view('pago');
-});
+Route::get('/pago-servicios', 'PagosController@index');
+
+Route::post('/pago-servicios/pago', 'PagosController@pago');
