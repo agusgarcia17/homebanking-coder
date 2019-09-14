@@ -34,4 +34,3 @@ Route::get('/pago-servicios', function () {
 Route::get('/pago', function () {
     return view('pago');
 });
-
