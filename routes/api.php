@@ -29,10 +29,6 @@ Route::get('/servicios', function () {
             'monto' => 350
         ],
         [
-            'servicio'=> 'Internet',
-            'monto' => 3500
-        ],
-        [
             'servicio'=> 'Agua',
             'monto' => 250
         ]
