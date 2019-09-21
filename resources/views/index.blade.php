@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/styles.css')}}" type="text/css" />
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index"><img src="{{asset('images/bank.png')}}" style="height: 40px" alt=""></a>
+        <a class="navbar-brand" href="{{ url('index')}}"><img src="{{asset('images/bank.png')}}" style="height: 40px" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,7 +33,7 @@
                         <a class="nav-link" href="{{ url('inversiones')}}">Inversiones</a>
                     </li>
                 </ul>
-            </div>
+        </div>
     </nav>
     <div class="jumbotron text-center">
         <h1 class="display-4">Bienvenido a homeBanking</h1>
@@ -48,7 +47,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Balance</h4>
                         <p class="card-text">Aca podes ver los balances de tus cuentas, los ingresos y egresos</p>
-                        <a href="balance" class="btn btn-primary">Ver balances</a>
+                        <a href="{{ url('balance')}}" class="btn btn-primary">Ver balances</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +58,7 @@
                         <h4 class="card-title">Pago de servicios</h4>
                         <p class="card-text">Mediante nuestra plataforma podras realizar el pago de todos tus servicios
                         </p>
-                        <a href="pago-servicios" class="btn btn-primary">Realizar pagos</a>
+                        <a href="{{ url('pago-servicios')}}" class="btn btn-primary">Realizar pagos</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +68,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Inversiones</h4>
                         <p class="card-text">Si sos mas atrevido, podes animarte a invertir tu dinero</p>
-                        <a href="inversiones" class="btn btn-primary">Ver inversiones</a>
+                        <a href="{{ url('inversiones')}}" class="btn btn-primary">Ver inversiones</a>
                     </div>
                 </div>
             </div>

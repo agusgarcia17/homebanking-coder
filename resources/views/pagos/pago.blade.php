@@ -17,7 +17,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
-            <a class="navbar-brand" href="index"><img src="{{asset('images/bank.png')}}" style="height: 40px" alt=""></a>
+            <a class="navbar-brand" href="{{ url('index')}}"><img src="{{asset('images/bank.png')}}" style="height: 40px" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,30 +39,24 @@
                 </ul>
             </div>
         </nav>
+        @isset($error) 
+            <div class="alert alert-danger pt-3 pb-3 text-center"  role="alert">
+                {{$error}}
+            </div>
+        @endisset
+
+        @if(@isset($servicio) && @isset($referencia )&& @isset($importe))
         <div class="alert alert-success text-center" role="alert">
-                <h4 class="alert-heading">Pago realizado</h4>
-                <p> 
-                    <?php
-                        if(isset($_POST["servicio"]) && isset($_POST["referencia"]) && isset($_POST["importe"]) ){
-
-                        $servicio = $_POST["servicio"];
-                        $referencia = $_POST["referencia"];
-                        $importe = $_POST["importe"];
-
-                        echo
-                            "Servicio pagado: " . $servicio . "<br> 
-                            Numero de referencia: " . $referencia . "<br> 
-                            Importe: " . $importe . "<br>";
-            
-                        } else {
-                            echo "Data no enviada";
-                        }
-                    ?>
-                </p>
+                <h3 class="alert-heading">Pago realizado</h3>
+                <h4> Servicio pagado:  {{ $servicio }} <br> 
+                            Numero de referencia:  {{$referencia}} <br> 
+                            Importe: {{$importe}} <br>
+                </h4>
         </div>
+        @endif
         <div class="container">
             <div class="col text-center " >
-                <a href="{{ url('pago-servicios')}}" class="btn btn-primary mt-3">Realizar mas pagos</a>
+                <a href="{{ url('pago-servicios')}}" class="btn btn-primary mt-3">Volver a pagos</a>
             </div>
         </div>
 </body>
