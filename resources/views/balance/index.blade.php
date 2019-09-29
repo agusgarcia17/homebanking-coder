@@ -16,33 +16,14 @@
                 </tr>
             </thead>
             <tbody>
-                    <?php
-                    $entradas =[];
-
-                    class Entrada{
-                        public $monto;
-                        public $descripcion;
-                        public $fecha;
-                        
-                        public function __construct($monto, $descripcion, $fecha){
-                            $this->monto = $monto;
-                            $this->descripcion = $descripcion;
-                            $this->fecha = $fecha;
-                        }   
-                    }
-
-                    array_push($entradas, new Entrada(200, 'gasto', '22-04'));
-                    
-                    foreach ($entradas as $entrada) {
-                        echo   
-                        '<tr>
-                        <th scope="row">'. $entrada->fecha .'</th>
-                        <td>' . $entrada->descripcion. '</td>
-                        <td>' . $entrada->monto . '</td>
-                        <td>' . 'saldo'  . '</td>
-                        </tr> ';
-                    }
-                    ?>
+                   @foreach ($balances as $item)
+                        <tr>
+                            <th scope="row">{{ date('d-m-Y', strtotime($item->fecha))  }}</th>
+                            <td>{{ $item->desc }}</td>
+                            <td>{{ $item->importe }}</td>
+                            <td> saldo </td>
+                        </tr>
+                    @endforeach
             </tbody>
         </table>
     </div>

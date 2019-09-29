@@ -21,4 +21,4 @@ Route::get('/inversiones', 'InversionesController@index');
 
 Route::get('/pago-servicios', 'PagosController@index');
 
-Route::post('/pago-servicios/pago', 'PagosController@pago');
+Route::post('/pago-servicios/pago', 'PagosController@pago')->name('pagado');

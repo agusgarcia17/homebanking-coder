@@ -10,12 +10,12 @@
             </div>
         @endisset
 
-        @if(@isset($servicio) && @isset($referencia) && @isset($importe))
+        @if(@isset($pago->fecha) && @isset($pago->desc) && @isset($pago->importe))
         <div class="alert alert-success text-center" role="alert">
                 <h3 class="alert-heading">Pago realizado</h3>
-                <h4> Servicio pagado:  {{ $servicio }} <br> 
-                            Numero de referencia:  {{$referencia}} <br> 
-                            Importe: {{$importe}} <br>
+                <h4> Fecha de pago:  {{ $pago->fecha }} <br> 
+                            Descripcion:  {{$pago->desc}} <br> 
+                            Importe: {{$pago->importe}} <br>
                 </h4>
         </div>
         @endif

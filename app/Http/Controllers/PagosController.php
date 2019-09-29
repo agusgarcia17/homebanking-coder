@@ -3,32 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Balance;
+use App\Servicio;
 
 class PagosController extends Controller
 {
     public function index(){
-        return view('pagos.index');
+        $servicios = Servicio::all();
+
+        // dd($servicios);
+        return view('pagos.index')->with('servicios', $servicios);
     }
 
     public function pago(Request $request){
 
-        $servicio = $request->input('servicio');
-        $referencia = $request->input('referencia');
-        $importe = $request->input('importe');
+        $pago = new Balance();
+
+        $pago->fecha = $request->input('fecha');
+        $pago->desc = $request->input('desc');
+        $pago->importe = $request->input('importe');
        
-        if($servicio != null && $referencia != null && $importe !=null){
+        $pago->save();
 
-            $attrs = [
-            'servicio' => $servicio,
-            'referencia' => $referencia,
-            'importe' => $importe,
-            ];
-
-        return view('pagos.pago')->with($attrs);
-        } 
-        else {
+        return view('pagos.pago')->with('pago', $pago);
+        
+    
+        // else {
       
-            return view('pagos.pago')->with('error', 'Pago inválido, por favor realizar nuevamente');
-        }
+        //     return view('pagos.pago')->with('error', 'Pago inválido, por favor realizar nuevamente');
+        // }
     }
 }

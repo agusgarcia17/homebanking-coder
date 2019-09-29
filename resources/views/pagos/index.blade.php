@@ -8,13 +8,21 @@
     <div class="container">
         <div class="col d-flex justify-content-center pb-3">
             <form action="{{url('pago-servicios/pago')}}" method="POST">
-                <div class="form-group">
-                    <label for="servicio">Nombre del servicio</label>
-                    <input  type="text" class="form-control" id="servicio" name="servicio" placeholder="Por ej. Metrogas">
+            <div class="form-group">
+                    <label for="desc">Descripcion de pago</label>
+                    <select class="form-control" id="desc" name="desc">
+                        @foreach($servicios as $item)
+                            <option>{{$item->servicio}}</option>
+                        @endforeach
+                    </select>
                 </div>
+                <!-- <div class="form-group">
+                    <label for="desc">Descripcion de pago</label>
+                    <input type="text" class="form-control" id="desc" name="desc" placeholder="Descripcion de pago">
+                </div> -->
                 <div class="form-group">
-                    <label for="referencia">Numero de referencia</label>
-                    <input   type="number" class="form-control" id="referencia" name="referencia" placeholder="Numero de referencia">
+                    <label for="fecha">Fecha</label>
+                    <input  type="date" class="form-control" id="fecha" name="fecha" placeholder="Ingrese fecha de pago">
                 </div>
                 <div class="form-group">
                     <label for="importe">Importe</label>
