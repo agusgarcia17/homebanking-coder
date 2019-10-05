@@ -19,6 +19,12 @@ Route::get('/balance', 'BalanceController@index');
 
 Route::get('/inversiones', 'InversionesController@index');
 
-Route::get('/pago-servicios', 'PagosController@index');
+Route::resource('/pago-servicios', 'PagosController');
 
-Route::post('/pago-servicios/pago', 'PagosController@pago')->name('pagado');
+Route::post('/pago-servicios/pago', 'PagosController@pay')->name('pagado');
+
+Route::post('/pago-servicios/store', 'PagosController@store');
+
+Route::get('/inversiones/buy/{id}', 'InversionesController@buy')->name('investment.buy');
+
+Route::get('/inversiones/sell/{id}', 'InversionesController@sell')->name('investment.sell');

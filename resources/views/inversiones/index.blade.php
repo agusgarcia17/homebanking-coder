@@ -6,6 +6,14 @@
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="alert alert-primary" role="alert">
+                    <strong>Saldo ${{ $salary }}</strong>
+                </div>
+            </div>
+        </div>
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -16,15 +24,17 @@
                 </tr>
             </thead>
             <tbody>
+            @foreach ($investments as $inv)
                 <tr>
-                    <th scope="row">Microsoft</th>
-                    <td>300</td>
-                    <td>5000</td>
+                    <th scope="row">{{$inv->empresa}}</th>
+                    <td>{{$inv->acciones}}</td>
+                    <td>{{$inv->valor}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary mx-2">Comprar</button>
-                        <button type="button" class="btn btn-success mx-2">Vender</button>
+                        <a href="{{route('investment.buy', ['id' => $inv->id])}} " type="button" class="btn btn-primary mx-2">Comprar</a>
+                        <a href="{{route('investment.sell', ['id' => $inv->id])}}  " type="button" class="btn btn-success mx-2">Vender</a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

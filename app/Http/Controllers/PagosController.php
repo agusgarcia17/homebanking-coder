@@ -3,34 +3,56 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Balance;
 use App\Servicio;
+use App\Balance;
 
 class PagosController extends Controller
 {
     public function index(){
         $servicios = Servicio::all();
-
-        // dd($servicios);
         return view('pagos.index')->with('servicios', $servicios);
     }
 
-    public function pago(Request $request){
+    public function create(){
+        return view('pagos.create');
+    }
 
-        $pago = new Balance();
+    public function store(Request $request){
+        $servicio = new Servicio();
 
-        $pago->fecha = $request->input('fecha');
-        $pago->desc = $request->input('desc');
-        $pago->importe = $request->input('importe');
-       
-        $pago->save();
+        $servicio->nameService = $request->input('nameService');
+        // $servicio->numbRef = $request->input('numbRef');
 
-        return view('pagos.pago')->with('pago', $pago);
+        $servicio->save();
+
+        return redirect()->route('pago-servicios.index'); 
+    }
+
+    public function pay(Request $request){
+        $nameService = $request->input('desc');
+        $monto = $request->get('importe');
+        $balance = Balance::all();
+        $salary = 0;
+
+         foreach($balance as $item){
+            $salary += $item->importe;
+        }
+
+        if($salary >= 0){
         
-    
-        // else {
-      
-        //     return view('pagos.pago')->with('error', 'Pago inválido, por favor realizar nuevamente');
-        // }
+            $pago = new Balance();
+            $pago->fecha = date('Y-m-d');
+            $pago->desc = "Pago de servicio: " . $nameService;
+            $pago->importe = -$monto;
+            // $pago->importe = $request->input('importe');
+        
+            $pago->save();
+
+            return view('pagos.pago')->with('pago', $pago);
+        } else {
+            $error = 'Sos pobre';
+            return view('pagos.pago')->with('error', $error);
+        }
+
     }
 }
