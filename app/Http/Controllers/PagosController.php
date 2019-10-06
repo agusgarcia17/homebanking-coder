@@ -38,7 +38,7 @@ class PagosController extends Controller
             $salary += $item->importe;
         }
 
-        if($salary >= 0){
+        if($salary >= $monto){
         
             $pago = new Balance();
             $pago->fecha = date('Y-m-d');
