@@ -58,12 +58,17 @@ class InversionesController extends Controller
                     $balance->importe = $inv->valor * -1;
                     $balance->save();
     
-                    dd("Se compro una accion de la empresa " . $inv->empresa);
+                    // dd("Se compro una accion de la empresa " . $inv->empresa);
+                    return view('inversiones.invest')->with('balance', $balance);
                 } else {
-                    dd("No tienes suficiente dinero en la cuenta!");
+                    // dd("No tienes suficiente dinero en la cuenta!");
+                    $error = 'No tienes suficiente dinero en la cuenta!';
+                    return view('inversiones.invest')->with('error', $error);
                 }      
             } else {
-                dd("No hay acciones para comprar!");
+                $error = 'No hay acciones para comprar!';
+                return view('inversiones.invest')->with('error', $error);
+                // dd("No hay acciones para comprar!");
             }
         }
         
@@ -88,13 +93,18 @@ class InversionesController extends Controller
                     $balance->importe = $inv->valor;
                     $balance->save();
     
-                    dd("Se vendio una accion de la empresa " . $inv->empresa);
+                    // dd("Se vendio una accion de la empresa " . $inv->empresa);
+                    return view('inversiones.invest')->with('balance', $balance);
                 } else {
-                    dd("No tienes suficiente dinero en la cuenta!");
+                    // dd("No tienes suficiente dinero en la cuenta!");
+                    $error = 'No tienes suficiente dinero en la cuenta!';
+                    return view('inversiones.invest')->with('error', $error);
                 }
                 
             } else {
-                dd("No hay acciones para vender!");
+                $error = 'No hay acciones para vender!';
+                return view('inversiones.invest')->with('error', $error);
+                // dd("No hay acciones para vender!");
             }
         }
 }
